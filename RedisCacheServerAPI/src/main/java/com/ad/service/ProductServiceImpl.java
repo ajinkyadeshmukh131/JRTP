@@ -20,7 +20,7 @@ public class ProductServiceImpl implements IProductService {
 	 
 	
 	@Override
-	@CachePut(value="prods",key="#pid")
+	@CachePut(value="prods",key="#prod.pid")
 	public Product addProduct(Product prod) {
 		repo.save(prod);
 		return prod;
