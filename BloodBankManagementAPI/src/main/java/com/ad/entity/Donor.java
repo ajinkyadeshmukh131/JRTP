@@ -24,6 +24,11 @@ public class Donor {
 	private String emailId;
 	@Column(name="PHONE_NUMBER",length = 10)
 	private Long phoneNumber;
+	@Column(length = 20)
+	private String bloodGroup;
+	@Column(length = 40)
+	private String availabilityStatus;
+	
 	
 	
 }

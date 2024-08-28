@@ -24,6 +24,8 @@ public class Recipient {
 	private String emailId;
 	@Column(name="PHONE_NUMBER",length = 10)
 	private Long phoneNumber;
+	@Column(length = 30)
+	private String requiredBloodGroup;
 	
 	
 }
