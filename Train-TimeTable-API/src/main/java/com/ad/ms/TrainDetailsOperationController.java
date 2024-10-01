@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ad.entity.TrainDetails;
 import com.ad.model.SearchInputs;
+import com.ad.model.SearchResults;
 import com.ad.service.ITrainDetailsMgmtService;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
@@ -119,5 +120,13 @@ public class TrainDetailsOperationController {
 		}
 	}
 	
-	
+	@PostMapping("/search")
+	public ResponseEntity<?> searchTrainByInputs(@RequestBody SearchInputs inputs){
+		try {
+			List<SearchResults> list=trainService.showTrainsByFilters(inputs);
+			return new ResponseEntity<List<SearchResults>>(list, HttpStatus.CREATED);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }

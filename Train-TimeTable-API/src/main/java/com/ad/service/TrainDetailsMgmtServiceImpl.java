@@ -34,7 +34,7 @@ import jakarta.servlet.ServletOutputStream;
 import jakarta.servlet.http.HttpServletResponse;
 
 @Service("trainService")
-public class TrainDetailsMgmtServiceImpl implements ITrainDetailsMgmtService {
+public  class TrainDetailsMgmtServiceImpl implements ITrainDetailsMgmtService {
 	@Autowired
 	private ITrainDetailsRepository trainRepo;
 
@@ -61,13 +61,9 @@ public class TrainDetailsMgmtServiceImpl implements ITrainDetailsMgmtService {
 	@Override
 	public List<SearchResults> showTrainsByFilters(SearchInputs inputs) {
 			TrainDetails entity=new TrainDetails();
-			String category=inputs.getTrainCategory();
+			String category=inputs.getCategory();
 			if(StringUtils.hasLength(category))
 				entity.setCategory(category);
-			
-			String activeDays=inputs.getActiveDays();
-			if(StringUtils.hasLength(activeDays))
-				entity.setActiveDays(activeDays);
 			
 			String sourceStation=inputs.getSourceStation();
 			if(StringUtils.hasLength(sourceStation));
@@ -78,9 +74,8 @@ public class TrainDetailsMgmtServiceImpl implements ITrainDetailsMgmtService {
 			entity.setSourceStation(destinationStation);
 			
 			Example<TrainDetails> example=Example.of(entity);
-			
 			List<TrainDetails> listEntities=trainRepo.findAll(example);
-			List<SearchResults> listResults=new ArrayList();
+			List<SearchResults> listResults=new ArrayList<>();
 			listEntities.forEach(train->{
 				SearchResults result=new SearchResults();
 				BeanUtils.copyProperties(train, result);

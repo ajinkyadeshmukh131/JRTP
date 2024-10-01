@@ -9,9 +9,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class SearchInputs {
-	private Integer trainNo;
-   private String trainCategory;
-   private String activeDays;
+	
+   private String category;
    private String sourceStation;
    private String destinationStation;
   
